@@ -1,0 +1,23 @@
+import { StyleSheet, Image } from 'react-native';
+
+interface ImageProps {
+  placeholderImageSource: string;
+  selectedImage: string;
+}
+
+export default function ImageViewer(props: ImageProps): JSX.Element {
+  const imageSource =
+    props.selectedImage !== 'null'
+      ? { uri: props.selectedImage }
+      : props.placeholderImageSource;
+
+  return <Image source={imageSource} style={styles.image} />;
+}
+
+const styles = StyleSheet.create({
+  image: {
+    width: 320,
+    height: 440,
+    borderRadius: 18
+  }
+});
