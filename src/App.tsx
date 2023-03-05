@@ -6,12 +6,15 @@ import Button from './components/Button';
 import IconButton from './components/IconButton';
 import CircleButton from './components/CircleButton';
 import EmojiPicker from './components/EmojiPicker';
+import EmojiList from './components/EmojiList';
+import EmojiSticker from './components/EmojiSticker';
 import * as ImagePicker from 'expo-image-picker';
 
 export default function App(): JSX.Element {
   const [selectedImage, setSelectedImage] = useState('null');
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [showAppOptions, setShowAppOptions] = useState(false);
+  const [pickedEmoji, setPickedEmoji] = useState(null);
 
   const pickImageAsync = async (): Promise<void> => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -50,6 +53,9 @@ export default function App(): JSX.Element {
           placeholderImageSource={require('../assets/images/background-image.png')}
           selectedImage={selectedImage}
         />
+        {pickedEmoji !== null ? (
+          <EmojiSticker imageSize={40} stickerSource={pickedEmoji} />
+        ) : null}
       </View>
       {showAppOptions ? (
         <View style={styles.optionsContainer}>
@@ -79,7 +85,7 @@ export default function App(): JSX.Element {
         </View>
       )}
       <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
-        {/* A list of emoji component will go here */}
+        <EmojiList onSelect={setPickedEmoji} onCloseModal={onModalClose} />{' '}
       </EmojiPicker>
       <StatusBar style='auto' />
     </View>
