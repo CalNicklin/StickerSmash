@@ -5,10 +5,12 @@ import ImageViewer from './components/ImageViewer';
 import Button from './components/Button';
 import IconButton from './components/IconButton';
 import CircleButton from './components/CircleButton';
+import EmojiPicker from './components/EmojiPicker';
 import * as ImagePicker from 'expo-image-picker';
 
 export default function App(): JSX.Element {
   const [selectedImage, setSelectedImage] = useState('null');
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [showAppOptions, setShowAppOptions] = useState(false);
 
   const pickImageAsync = async (): Promise<void> => {
@@ -25,16 +27,20 @@ export default function App(): JSX.Element {
     }
   };
 
-  const onReset = () => {
+  const onReset = (): void => {
     setShowAppOptions(false);
   };
 
-  const onAddSticker = () => {
+  const onSaveImageAsync = async (): Promise<void> => {
     // we will implement this later
   };
 
-  const onSaveImageAsync = async () => {
-    // we will implement this later
+  const onAddSticker = (): void => {
+    setIsModalVisible(true);
+  };
+
+  const onModalClose = (): void => {
+    setIsModalVisible(false);
   };
 
   return (
@@ -72,6 +78,9 @@ export default function App(): JSX.Element {
           />
         </View>
       )}
+      <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
+        {/* A list of emoji component will go here */}
+      </EmojiPicker>
       <StatusBar style='auto' />
     </View>
   );

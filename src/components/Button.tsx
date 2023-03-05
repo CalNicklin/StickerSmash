@@ -3,8 +3,8 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 interface ButtonProps {
   label: string;
-  theme: string;
-  onPress: null;
+  theme?: string;
+  onPress: () => void;
 }
 
 export default function Button(props: ButtonProps): JSX.Element {

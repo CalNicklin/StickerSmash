@@ -2,7 +2,7 @@ import { View, Pressable, StyleSheet } from 'react-native';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 interface Props {
-  onPress: null;
+  onPress: () => void;
 }
 
 export default function CircleButton(props: Props): JSX.Element {

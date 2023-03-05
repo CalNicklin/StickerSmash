@@ -4,7 +4,7 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 interface IconButtonProps {
   icon: string;
   label: string;
-  onPress: null;
+  onPress: () => void;
 }
 
 export default function IconButton(props: IconButtonProps): JSX.Element {
